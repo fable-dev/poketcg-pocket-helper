@@ -86,52 +86,74 @@ function renderFilters() {
   const raritySelect = document.getElementById("rarity-filter");
   const typeSelect = document.getElementById("type-filter");
   const weaknessSelect = document.getElementById("weakness-filter");
+  const packSelect = document.getElementById("pack-filter");
 
   const sets = Array.from(new Set(allCards.map((c) => c.set))).sort();
   const rarities = Array.from(new Set(allCards.map((c) => c.rarity))).sort();
 
   const allTypes = new Set();
   const allWeaknesses = new Set();
+  const allPacks = new Set();
 
   allCards.forEach((card) => {
     (card.types || []).forEach((t) => allTypes.add(t));
     (card.weaknesses || []).forEach((w) => allWeaknesses.add(w));
+    (card.boosterPacks || []).forEach((p) => allPacks.add(p));
   });
 
-  // Clear existing options except the first
-  [setSelect, raritySelect, typeSelect, weaknessSelect].forEach((select) => {
-    const firstOption = select.querySelector("option");
+  // Helper to reset a <select> keeping its first one or two options
+  function resetSelect(select, keepCount) {
+    const kept = Array.from(select.options).slice(0, keepCount);
     select.innerHTML = "";
-    select.appendChild(firstOption);
-  });
+    kept.forEach((opt) => select.appendChild(opt));
+  }
 
-  for (const setName of sets) {
+  resetSelect(setSelect, 1);      // keep "All sets"
+  resetSelect(raritySelect, 1);   // keep "All rarities"
+  resetSelect(typeSelect, 1);     // keep "All types"
+  resetSelect(weaknessSelect, 1); // keep "All weaknesses"
+  resetSelect(packSelect, 2);     // keep "All booster packs" + "Any booster pack"
+
+  sets.forEach((setName) => {
     const opt = document.createElement("option");
     opt.value = setName;
     opt.textContent = setName;
     setSelect.appendChild(opt);
-  }
+  });
 
-  for (const rarity of rarities) {
+  rarities.forEach((rarity) => {
     const opt = document.createElement("option");
     opt.value = rarity;
     opt.textContent = rarity;
     raritySelect.appendChild(opt);
-  }
+  });
 
-  for (const type of Array.from(allTypes).sort()) {
-    const opt = document.createElement("option");
-    opt.value = type;
-    opt.textContent = type;
-    typeSelect.appendChild(opt);
-  }
+  Array.from(allTypes)
+    .sort()
+    .forEach((type) => {
+      const opt = document.createElement("option");
+      opt.value = type;
+      opt.textContent = type;
+      typeSelect.appendChild(opt);
+    });
 
-  for (const weak of Array.from(allWeaknesses).sort()) {
-    const opt = document.createElement("option");
-    opt.value = weak;
-    opt.textContent = weak;
-    weaknessSelect.appendChild(opt);
-  }
+  Array.from(allWeaknesses)
+    .sort()
+    .forEach((weak) => {
+      const opt = document.createElement("option");
+      opt.value = weak;
+      opt.textContent = weak;
+      weaknessSelect.appendChild(opt);
+    });
+
+  Array.from(allPacks)
+    .sort()
+    .forEach((pack) => {
+      const opt = document.createElement("option");
+      opt.value = pack;
+      opt.textContent = pack + " pack";
+      packSelect.appendChild(opt);
+    });
 }
 
 function renderCards() {
@@ -159,14 +181,23 @@ function renderCards() {
 
     const tagEl = document.createElement("div");
     tagEl.className = "card-tag";
-    tagEl.textContent = `${card.set} • ${card.rarity}`;
+    
+    const number = card.collectorNumber != null ? `#${card.collectorNumber}` : "";
+    const setCode = card.setCode ? `(${card.setCode})` : "";
+    tagEl.textContent = `${card.set} ${setCode} ${number} • ${card.rarity}`;
 
     header.appendChild(nameEl);
     header.appendChild(tagEl);
 
     const meta = document.createElement("div");
     meta.className = "card-meta";
-    meta.textContent = `${card.types.join(", ")} • HP ${card.hp} • Retreat ${card.retreatCost}`;
+    
+    const typeLine = (card.types || []).join(", ");
+    const subtypeLine = card.subtypes && card.subtypes.length
+      ? ` • ${card.subtypes.join(" / ")}`
+      : "";
+
+    meta.textContent = `${typeLine} • ${card.hp} HP${subtypeLine}`;
 
     const collectionDiv = document.createElement("div");
     collectionDiv.className = "card-collection";
@@ -215,6 +246,26 @@ function renderCards() {
 
     cardEl.appendChild(header);
     cardEl.appendChild(meta);
+    const boosterMeta = document.createElement("div");
+    boosterMeta.className = "card-meta";
+
+    const packs = card.boosterPacks || [];
+    if (packs.length === 0) {
+      boosterMeta.textContent = "Available in any booster pack";
+    } else {
+      boosterMeta.textContent = "Available in: " + packs.join(", ") + " pack(s)";
+    }
+
+    cardEl.appendChild(boosterMeta);
+
+    if (card.flavorText) {
+      const flavor = document.createElement("div");
+      flavor.className = "card-meta";
+      flavor.style.fontStyle = "italic";
+      flavor.textContent = card.flavorText;
+      cardEl.appendChild(flavor);
+    }
+
     cardEl.appendChild(collectionDiv);
 
     cardsGrid.appendChild(cardEl);
@@ -248,10 +299,12 @@ async function init() {
   document
     .getElementById("rarity-filter")
     .addEventListener("change", () => renderCards());
-  document.getElementById("type-filter").addEventListener("change", renderCards);
+ document.getElementById("type-filter").addEventListener("change", renderCards);
 document.getElementById("weakness-filter").addEventListener("change", renderCards);
 document.getElementById("hp-min").addEventListener("input", renderCards);
 document.getElementById("hp-max").addEventListener("input", renderCards);
+document.getElementById("pack-filter").addEventListener("change", renderCards);
+
 }
 
 document.addEventListener("DOMContentLoaded", init);
