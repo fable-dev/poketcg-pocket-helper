@@ -61,14 +61,18 @@ function addCardToDeck(cardId) {
 
   const currentCount = deck.cards[cardId] || 0;
 
-  // Simple rules: max 4 copies of any card, max 60 cards in deck
+  // Pokémon TCG Pocket rules (simplified):
+  // - 20 cards per deck
+  // - Max 2 copies of any single card
   const totalCards = Object.values(deck.cards).reduce((a, b) => a + b, 0);
-  if (totalCards >= 60) {
-    alert("Deck is at 60 cards (simple limit).");
+
+  if (totalCards >= 20) {
+    alert("Deck is at 20 cards (Pocket limit).");
     return;
   }
-  if (currentCount >= 4) {
-    alert("Max 4 copies of a card (simple rule).");
+
+  if (currentCount >= 2) {
+    alert("Max 2 copies of a card in Pokémon TCG Pocket.");
     return;
   }
 
@@ -146,7 +150,7 @@ function renderDeckSummary() {
   const deck = getCurrentDeck();
 
   if (!deck) {
-    summaryEl.textContent = "Create a deck to get started.";
+    summaryEl.textContent = "Create a deck to get started (20 cards, max 2 copies of each).";
     return;
   }
 
@@ -159,9 +163,14 @@ function renderDeckSummary() {
     .map(([rarity, count]) => `${rarity}: ${count}`)
     .join(", ");
 
+  const statusText =
+    total === 20
+      ? "Deck is complete (20/20 cards)."
+      : `Deck has ${total}/20 cards.`;
+
   summaryEl.innerHTML = `
     <div><strong>Deck name:</strong> ${deck.name}</div>
-    <div><strong>Total cards:</strong> ${total}</div>
+    <div><strong>Status:</strong> ${statusText}</div>
     <div><strong>By type:</strong> ${typeText || "—"}</div>
     <div><strong>By rarity:</strong> ${rarityText || "—"}</div>
   `;
