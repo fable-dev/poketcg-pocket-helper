@@ -1,1 +1,48 @@
+[
+  {
+    "id": "pocket-001",
+    "name": "Bulbasaur",
+    "types": ["Grass"],
+    "hp": 60,
+    "rarity": "Common",
+    "set": "Starter Set",
+    "image": "",
+    "weaknesses": ["Fire"],
+    "retreatCost": 1
+  },
+  {
+    "id": "pocket-002",
+    "name": "Charmander",
+    "types": ["Fire"],
+    "hp": 60,
+    "rarity": "Common",
+    "set": "Starter Set",
+    "image": "",
+    "weaknesses": ["Water"],
+    "retreatCost": 1
+  },
+  {
+    "id": "pocket-003",
+    "name": "Squirtle",
+    "types": ["Water"],
+    "hp": 60,
+    "rarity": "Common",
+    "set": "Starter Set",
+    "image": "",
+    "weaknesses": ["Grass"],
+    "retreatCost": 1
+  },
+  {
+    "id": "pocket-004",
+    "name": "Pikachu",
+    "types": ["Lightning"],
+    "hp": 70,
+    "rarity": "Rare",
+    "set": "Pocket Vol. 1",
+    "image": "",
+    "weaknesses": ["Fighting"],
+    "retreatCost": 1
+  }
+]
+
 
