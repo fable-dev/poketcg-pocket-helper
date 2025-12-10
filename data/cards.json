@@ -1,75 +1,56 @@
 [
   {
-    "id": "pocket-001",
+    "id": "A1-001",
     "name": "Bulbasaur",
     "types": ["Grass"],
-    "hp": 60,
-    "rarity": "Common",
-    "set": "Starter Set",
+    "hp": 70,
+    "supertype": "Pokémon",
+    "subtypes": ["Basic"],
+    "evolvesFrom": null,
+    "rarity": "1-Diamond",
+    "rarityRank": 1,
+    "set": "Genetic Apex",
+    "setCode": "A1",
+    "collectorNumber": 1,
     "weaknesses": ["Fire"],
     "retreatCost": 1,
-    "flavorText": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
+    "illustrator": "Narumi Sato",
+    "flavorText": "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
+    "boosterPacks": ["Mewtwo"],
     "attacks": [
-      { "name": "Tackle", "cost": ["Colorless"], "damage": "10" },
-      { "name": "Vine Whip", "cost": ["Grass", "Colorless"], "damage": "30" }
+      {
+        "name": "Vine Whip",
+        "cost": ["G", "C"],
+        "damage": "40",
+        "text": ""
+      }
     ]
   },
   {
-    "id": "pocket-002",
-    "name": "Charmander",
-    "types": ["Fire"],
-    "hp": 60,
-    "rarity": "Common",
-    "set": "Starter Set",
-    "weaknesses": ["Water"],
-    "retreatCost": 1,
-    "flavorText": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.",
+    "id": "A1-002",
+    "name": "Ivysaur",
+    "types": ["Grass"],
+    "hp": 90,
+    "supertype": "Pokémon",
+    "subtypes": ["Stage 1"],
+    "evolvesFrom": "Bulbasaur",
+    "rarity": "2-Diamond",
+    "rarityRank": 2,
+    "set": "Genetic Apex",
+    "setCode": "A1",
+    "collectorNumber": 2,
+    "weaknesses": ["Fire"],
+    "retreatCost": 2,
+    "illustrator": "Kurata So",
+    "flavorText": "When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.",
+    "boosterPacks": ["Mewtwo"],
     "attacks": [
-      { "name": "Scratch", "cost": ["Colorless"], "damage": "10" },
-      { "name": "Ember", "cost": ["Fire", "Colorless"], "damage": "30" }
-    ]
-  },
-  {
-    "id": "pocket-003",
-    "name": "Squirtle",
-    "types": ["Water"],
-    "hp": 60,
-    "rarity": "Common",
-    "set": "Starter Set",
-    "weaknesses": ["Grass"],
-    "retreatCost": 1,
-    "flavorText": "Shoots water at prey while in the water. Withdraws into its shell when in danger.",
-    "attacks": [
-      { "name": "Bubble", "cost": ["Water"], "damage": "10" },
-      { "name": "Water Gun", "cost": ["Water", "Colorless"], "damage": "30" }
-    ]
-  },
-  {
-    "id": "pocket-004",
-    "name": "Pikachu",
-    "types": ["Lightning"],
-    "hp": 70,
-    "rarity": "Rare",
-    "set": "Pocket Vol. 1",
-    "weaknesses": ["Fighting"],
-    "retreatCost": 1,
-    "flavorText": "When several of these Pokémon gather, their electricity could build and cause lightning storms.",
-    "attacks": [
-      { "name": "Thunder Jolt", "cost": ["Lightning"], "damage": "30" }
-    ]
-  },
-  {
-    "id": "pocket-005",
-    "name": "Eevee",
-    "types": ["Colorless"],
-    "hp": 50,
-    "rarity": "Uncommon",
-    "set": "Pocket Vol. 1",
-    "weaknesses": ["Fighting"],
-    "retreatCost": 1,
-    "flavorText": "Its genetic code is irregular. It may mutate if it is exposed to radiation from an elemental stone.",
-    "attacks": [
-      { "name": "Quick Attack", "cost": ["Colorless"], "damage": "20" }
+      {
+        "name": "Razor Leaf",
+        "cost": ["G", "C", "C"],
+        "damage": "60",
+        "text": ""
+      }
     ]
   }
 ]
