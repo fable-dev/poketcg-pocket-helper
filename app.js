@@ -233,6 +233,10 @@ async function init() {
   document
     .getElementById("rarity-filter")
     .addEventListener("change", () => renderCards());
+  document.getElementById("type-filter").addEventListener("change", renderCards);
+document.getElementById("weakness-filter").addEventListener("change", renderCards);
+document.getElementById("hp-min").addEventListener("input", renderCards);
+document.getElementById("hp-max").addEventListener("input", renderCards);
 }
 
 document.addEventListener("DOMContentLoaded", init);
