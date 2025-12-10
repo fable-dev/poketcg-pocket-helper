@@ -22,28 +22,49 @@
 
   <main class="main-layout">
     <section class="controls">
-      <h2>Search</h2>
-      <input
-        id="search-input"
-        type="text"
-        placeholder="Search by card name..."
-      />
+  <h2>Search Filters</h2>
 
-      <label class="filter-label">
-        Set:
-        <select id="set-filter">
-          <option value="">All sets</option>
-        </select>
-      </label>
+  <label class="filter-label">
+    Name:
+    <input id="search-input" type="text" placeholder="Search card name..." />
+  </label>
 
-      <label class="filter-label">
-        Rarity:
-        <select id="rarity-filter">
-          <option value="">All rarities</option>
-        </select>
-      </label>
-    </section>
+  <label class="filter-label">
+    Type:
+    <select id="type-filter">
+      <option value="">All types</option>
+    </select>
+  </label>
 
+  <label class="filter-label">
+    Weakness:
+    <select id="weakness-filter">
+      <option value="">All weaknesses</option>
+    </select>
+  </label>
+
+  <label class="filter-label">
+    Set:
+    <select id="set-filter">
+      <option value="">All sets</option>
+    </select>
+  </label>
+
+  <label class="filter-label">
+    Rarity:
+    <select id="rarity-filter">
+      <option value="">All rarities</option>
+    </select>
+  </label>
+
+  <label class="filter-label">
+    HP Range:
+    <div style="display: flex; gap: 0.5rem;">
+      <input id="hp-min" type="number" placeholder="Min" style="width: 45%;" />
+      <input id="hp-max" type="number" placeholder="Max" style="width: 45%;" />
+    </div>
+  </label>
+</section>
     <section class="cards-section">
       <h2>Cards</h2>
       <div id="cards-grid" class="cards-grid">
