@@ -69,27 +69,54 @@ function getFilteredCards() {
 function renderFilters() {
   const setSelect = document.getElementById("set-filter");
   const raritySelect = document.getElementById("rarity-filter");
+  const typeSelect = document.getElementById("type-filter");
+  const weaknessSelect = document.getElementById("weakness-filter");
 
   const sets = Array.from(new Set(allCards.map((c) => c.set))).sort();
   const rarities = Array.from(new Set(allCards.map((c) => c.rarity))).sort();
 
-  // Clear existing options except the first "All" option
-  setSelect.length = 1;
-  raritySelect.length = 1;
+  const allTypes = new Set();
+  const allWeaknesses = new Set();
 
-  sets.forEach((setName) => {
+  allCards.forEach((card) => {
+    (card.types || []).forEach((t) => allTypes.add(t));
+    (card.weaknesses || []).forEach((w) => allWeaknesses.add(w));
+  });
+
+  // Clear existing options except the first
+  [setSelect, raritySelect, typeSelect, weaknessSelect].forEach((select) => {
+    const firstOption = select.querySelector("option");
+    select.innerHTML = "";
+    select.appendChild(firstOption);
+  });
+
+  for (const setName of sets) {
     const opt = document.createElement("option");
     opt.value = setName;
     opt.textContent = setName;
     setSelect.appendChild(opt);
-  });
+  }
 
-  rarities.forEach((rarity) => {
+  for (const rarity of rarities) {
     const opt = document.createElement("option");
     opt.value = rarity;
     opt.textContent = rarity;
     raritySelect.appendChild(opt);
-  });
+  }
+
+  for (const type of Array.from(allTypes).sort()) {
+    const opt = document.createElement("option");
+    opt.value = type;
+    opt.textContent = type;
+    typeSelect.appendChild(opt);
+  }
+
+  for (const weak of Array.from(allWeaknesses).sort()) {
+    const opt = document.createElement("option");
+    opt.value = weak;
+    opt.textContent = weak;
+    weaknessSelect.appendChild(opt);
+  }
 }
 
 function renderCards() {
