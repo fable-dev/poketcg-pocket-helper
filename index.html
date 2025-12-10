@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pokémon TCG Pocket Helper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Pokémon TCG Pocket Helper</h1>
+    <p>Search cards and track your collection – all in your browser.</p>
+  </header>
+
+  <main class="main-layout">
+    <section class="controls">
+      <h2>Search</h2>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search by card name..."
+      />
+
+      <label class="filter-label">
+        Set:
+        <select id="set-filter">
+          <option value="">All sets</option>
+        </select>
+      </label>
+
+      <label class="filter-label">
+        Rarity:
+        <select id="rarity-filter">
+          <option value="">All rarities</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="cards-section">
+      <h2>Cards</h2>
+      <div id="cards-grid" class="cards-grid">
+        <!-- Cards will be rendered here by app.js -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>
+      Data is local to your browser. Not affiliated with Nintendo, Creatures, GAME FREAK, or The Pokémon Company.
+    </small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
