@@ -33,21 +33,36 @@ function getFilteredCards() {
     .getElementById("search-input")
     .value.trim()
     .toLowerCase();
+
   const setValue = document.getElementById("set-filter").value;
   const rarityValue = document.getElementById("rarity-filter").value;
+  const typeValue = document.getElementById("type-filter").value;
+  const weaknessValue = document.getElementById("weakness-filter").value;
+
+  const hpMin = parseInt(document.getElementById("hp-min").value) || 0;
+  const hpMax = parseInt(document.getElementById("hp-max").value) || 9999;
 
   return allCards.filter((card) => {
     const matchesSearch =
       !searchValue ||
       card.name.toLowerCase().includes(searchValue);
 
-    const matchesSet =
-      !setValue || card.set === setValue;
+    const matchesSet = !setValue || card.set === setValue;
+    const matchesRarity = !rarityValue || card.rarity === rarityValue;
+    const matchesType = !typeValue || card.types.includes(typeValue);
+    const matchesWeakness =
+      !weaknessValue ||
+      (card.weaknesses && card.weaknesses.includes(weaknessValue));
+    const matchesHP = card.hp >= hpMin && card.hp <= hpMax;
 
-    const matchesRarity =
-      !rarityValue || card.rarity === rarityValue;
-
-    return matchesSearch && matchesSet && matchesRarity;
+    return (
+      matchesSearch &&
+      matchesSet &&
+      matchesRarity &&
+      matchesType &&
+      matchesWeakness &&
+      matchesHP
+    );
   });
 }
 
