@@ -38,6 +38,7 @@ function getFilteredCards() {
   const rarityValue = document.getElementById("rarity-filter").value;
   const typeValue = document.getElementById("type-filter").value;
   const weaknessValue = document.getElementById("weakness-filter").value;
+  const packValue = document.getElementById("pack-filter").value;
 
   const hpMin = parseInt(document.getElementById("hp-min").value) || 0;
   const hpMax = parseInt(document.getElementById("hp-max").value) || 9999;
@@ -49,11 +50,24 @@ function getFilteredCards() {
 
     const matchesSet = !setValue || card.set === setValue;
     const matchesRarity = !rarityValue || card.rarity === rarityValue;
-    const matchesType = !typeValue || card.types.includes(typeValue);
+    const matchesType = !typeValue || (card.types || []).includes(typeValue);
     const matchesWeakness =
       !weaknessValue ||
-      (card.weaknesses && card.weaknesses.includes(weaknessValue));
+      (card.weaknesses || []).includes(weaknessValue);
     const matchesHP = card.hp >= hpMin && card.hp <= hpMax;
+
+    // Booster pack logic:
+    // - packValue ""  => ignore booster packs
+    // - packValue "Any" => show only cards with no restriction (boosterPacks empty or missing)
+    // - otherwise => card.boosterPacks must include that pack
+    const packs = card.boosterPacks || [];
+    let matchesPack = true;
+
+    if (packValue === "Any") {
+      matchesPack = packs.length === 0;
+    } else if (packValue) {
+      matchesPack = packs.includes(packValue);
+    }
 
     return (
       matchesSearch &&
@@ -61,7 +75,8 @@ function getFilteredCards() {
       matchesRarity &&
       matchesType &&
       matchesWeakness &&
-      matchesHP
+      matchesHP &&
+      matchesPack
     );
   });
 }
