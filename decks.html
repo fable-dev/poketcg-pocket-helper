@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deck Builder – Pokémon TCG Pocket Helper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div>
+        <h1>Pokémon TCG Pocket Helper</h1>
+        <p>Build decks using your Pocket card collection.</p>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link">Cards</a>
+        <a href="decks.html" class="nav-link active">Decks</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <section class="controls">
+      <h2>Decks</h2>
+
+      <label class="filter-label">
+        Select deck:
+        <select id="deck-select"></select>
+      </label>
+
+      <div class="deck-actions">
+        <input
+          id="new-deck-name"
+          type="text"
+          placeholder="New deck name"
+        />
+        <button id="create-deck-btn">Create</button>
+        <button id="delete-deck-btn">Delete deck</button>
+      </div>
+
+      <div class="deck-summary" id="deck-summary">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <section class="cards-section">
+      <h2>Deck Builder</h2>
+
+      <div class="deck-builder-layout">
+        <div class="deck-search">
+          <h3>Add cards</h3>
+          <input
+            id="deck-search-input"
+            type="text"
+            placeholder="Search card name..."
+          />
+          <div id="deck-search-results" class="cards-grid small-grid">
+            <!-- Search results -->
+          </div>
+        </div>
+
+        <div class="deck-list">
+          <h3>Cards in deck</h3>
+          <div id="deck-cards" class="deck-cards-list">
+            <!-- Deck contents -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>
+      Deck data is stored locally in your browser. Not affiliated with Nintendo, Creatures, GAME FREAK, or The Pokémon Company.
+    </small>
+  </footer>
+
+  <script src="decks.js"></script>
+</body>
+</html>
