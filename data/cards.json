@@ -6,9 +6,13 @@
     "hp": 60,
     "rarity": "Common",
     "set": "Starter Set",
-    "image": "",
     "weaknesses": ["Fire"],
-    "retreatCost": 1
+    "retreatCost": 1,
+    "flavorText": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
+    "attacks": [
+      { "name": "Tackle", "cost": ["Colorless"], "damage": "10" },
+      { "name": "Vine Whip", "cost": ["Grass", "Colorless"], "damage": "30" }
+    ]
   },
   {
     "id": "pocket-002",
@@ -17,9 +21,13 @@
     "hp": 60,
     "rarity": "Common",
     "set": "Starter Set",
-    "image": "",
     "weaknesses": ["Water"],
-    "retreatCost": 1
+    "retreatCost": 1,
+    "flavorText": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.",
+    "attacks": [
+      { "name": "Scratch", "cost": ["Colorless"], "damage": "10" },
+      { "name": "Ember", "cost": ["Fire", "Colorless"], "damage": "30" }
+    ]
   },
   {
     "id": "pocket-003",
@@ -28,9 +36,13 @@
     "hp": 60,
     "rarity": "Common",
     "set": "Starter Set",
-    "image": "",
     "weaknesses": ["Grass"],
-    "retreatCost": 1
+    "retreatCost": 1,
+    "flavorText": "Shoots water at prey while in the water. Withdraws into its shell when in danger.",
+    "attacks": [
+      { "name": "Bubble", "cost": ["Water"], "damage": "10" },
+      { "name": "Water Gun", "cost": ["Water", "Colorless"], "damage": "30" }
+    ]
   },
   {
     "id": "pocket-004",
@@ -39,10 +51,25 @@
     "hp": 70,
     "rarity": "Rare",
     "set": "Pocket Vol. 1",
-    "image": "",
     "weaknesses": ["Fighting"],
-    "retreatCost": 1
+    "retreatCost": 1,
+    "flavorText": "When several of these Pokémon gather, their electricity could build and cause lightning storms.",
+    "attacks": [
+      { "name": "Thunder Jolt", "cost": ["Lightning"], "damage": "30" }
+    ]
+  },
+  {
+    "id": "pocket-005",
+    "name": "Eevee",
+    "types": ["Colorless"],
+    "hp": 50,
+    "rarity": "Uncommon",
+    "set": "Pocket Vol. 1",
+    "weaknesses": ["Fighting"],
+    "retreatCost": 1,
+    "flavorText": "Its genetic code is irregular. It may mutate if it is exposed to radiation from an elemental stone.",
+    "attacks": [
+      { "name": "Quick Attack", "cost": ["Colorless"], "damage": "20" }
+    ]
   }
 ]
-
-
